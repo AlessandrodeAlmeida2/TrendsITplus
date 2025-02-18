@@ -1,0 +1,46 @@
+T = int(input())
+resultados = []
+
+for _ in range(T):
+    N, K = map(int, input().split())
+
+    sequencias = []
+    caracteres = ['(', ')']
+    pilha = ['']
+
+    while pilha:
+        atual = pilha.pop()
+        if len(atual) == N:
+            sequencias.append(atual)
+        else:
+            for caracter in caracteres:
+                pilha.append(atual + caracter)
+    
+    # Verificar quais sequências são mal-formadas
+    sequencias_malformadas = []
+    for seq in sequencias:
+        balance = 0
+        malformada = False
+        for caracter in seq:
+            if caracter == '(':
+                balance += 1
+            else:
+                balance -= 1
+            if balance < 0:
+                malformada = True
+                break
+        if balance != 0:
+            malformada = True
+        if malformada:
+            sequencias_malformadas.append(seq)
+   
+    sequencias_malformadas.sort()
+    
+    # Verificar se a K-ésima sequência mal-formada existe
+    if K < len(sequencias_malformadas):
+        resultados.append(sequencias_malformadas[K])
+    else:
+        resultados.append("-1")
+
+for resultado in resultados:
+    print(resultado)
