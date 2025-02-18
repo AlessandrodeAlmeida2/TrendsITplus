@@ -1,0 +1,9 @@
+import math
+
+while True:
+    linha = input().strip()
+    if linha == '0':
+        break
+    c = len(linha)
+    r = math.factorial(c)
+    print(r)
