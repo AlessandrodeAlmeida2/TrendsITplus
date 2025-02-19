@@ -1,0 +1,20 @@
+n = int(input())
+
+for _ in range(n):
+    # Produtos disponíveis para venda na feira
+    m = int(input())
+    produtos = {}
+    for _ in range(m):
+        item, preco = input().split()
+        produtos[item] = float(preco)
+    
+    # Produtos que dona Parcinova deseja comprar
+    p = int(input())
+    total = 0.0
+    for _ in range(p):
+        item, quantidade = input().split()
+        quantidade = int(quantidade)
+        total += produtos[item] * quantidade
+    
+    # Imprimir o valor total com 2 casas decimais
+    print(f"R$ {total:.2f}")
