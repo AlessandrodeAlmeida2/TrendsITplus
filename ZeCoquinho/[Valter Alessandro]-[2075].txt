@@ -44,3 +44,41 @@ for _ in range(T):
 
 for resultado in resultados:
     print(resultado)
+
+
+# Código gerado por IA
+
+from itertools import combinations
+
+def eh_malformada(seq):
+    balance = 0
+    for char in seq:
+        if char == '(':
+            balance += 1
+        else:
+            balance -= 1
+        if balance < 0:
+            return True
+    return balance != 0
+
+def encontrar_kesima_malformada(N, K):
+    if N % 2 != 0:
+        return "-1"
+    
+    contador = 0
+    for bits in combinations(range(N), N // 2):
+        seq = [')'] * N
+        for i in bits:
+            seq[i] = '('
+        seq = ''.join(seq)
+        if eh_malformada(seq):
+            if contador == K:
+                return seq
+            contador += 1
+    return "-1"
+
+# Leitura da entrada
+T = int(input())
+for _ in range(T):
+    N, K = map(int, input().split())
+    print(encontrar_kesima_malformada(N, K))
